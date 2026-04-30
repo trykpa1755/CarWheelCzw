@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RaceController : MonoBehaviour
@@ -16,10 +17,13 @@ public class RaceController : MonoBehaviour
 
     public CheckPointController[] carsController;
 
+    public GameObject endPanel;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        endPanel.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         startText.gameObject.SetActive(false);
         InvokeRepeating("CountDown", 3, 1);
@@ -39,7 +43,7 @@ public class RaceController : MonoBehaviour
             if (controller.lap == totalLaps + 1) finishedLap++;
             if (finishedLap == carsController.Length && racing)
             {
-                Debug.Log("FinishRace");
+                endPanel.SetActive(true);
                 racing = false;
             }
         }
@@ -73,5 +77,10 @@ public class RaceController : MonoBehaviour
     void HideStartText()
     {
         startText.gameObject.SetActive(false);
+    }
+
+    public void LoadScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 }
