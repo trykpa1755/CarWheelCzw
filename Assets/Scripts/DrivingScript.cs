@@ -19,6 +19,8 @@ public class DrivingScript : MonoBehaviour
     public int numGears = 5;
     public float gearLength = 5f;
 
+    public GameObject cameraTarget;
+
 
     public GameObject backLights;
     // Start is called before the first frame update
